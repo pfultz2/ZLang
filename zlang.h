@@ -8,8 +8,13 @@
 #ifndef ZLANG_GUARD_ZLANG_H
 #define ZLANG_GUARD_ZLANG_H
 
-
+#ifndef _MSC_VER
 #define Z_ZLANG_CAT_I(x, y) x ## y
+#else
+// MSVC workarounds
+#define Z_ZLANG_CAT_I(a, b) Z_ZLANG_CAT_X(~, a ## b)
+#define Z_ZLANG_CAT_X(p, x) x
+#endif
 #define Z_ZLANG_CAT(x, y) Z_ZLANG_CAT_I(x, y)
 
 #define Z_ZLANG_IF(c) Z_ZLANG_CAT(Z_ZLANG_IF_, c)
@@ -46,7 +51,7 @@
 #define Z_ZLANG_FIND_TRUE(p, d, x, ...) x
 
 
-
+#ifndef _MSC_VER
 #define Z_ZLANG_FIND(p, d, ...) Z_ZLANG_FIND_1(p, d, ~, __VA_ARGS__, (), ())
 #define Z_ZLANG_FIND_1(p, d, q, x, ...) Z_ZLANG_IF(Z_ZLANG_IS_PAREN(x))(Z_ZLANG_FIND_FALSE, Z_ZLANG_IF_INVOKE)(p, d, x)(Z_ZLANG_FIND_TRUE, Z_ZLANG_FIND_2)(p, d, x, __VA_ARGS__)
 #define Z_ZLANG_FIND_2(p, d, q, x, ...) Z_ZLANG_IF(Z_ZLANG_IS_PAREN(x))(Z_ZLANG_FIND_FALSE, Z_ZLANG_IF_INVOKE)(p, d, x)(Z_ZLANG_FIND_TRUE, Z_ZLANG_FIND_3)(p, d, x, __VA_ARGS__)
@@ -56,7 +61,38 @@
 #define Z_ZLANG_FIND_6(p, d, q, x, ...) Z_ZLANG_IF(Z_ZLANG_IS_PAREN(x))(Z_ZLANG_FIND_FALSE, Z_ZLANG_IF_INVOKE)(p, d, x)(Z_ZLANG_FIND_TRUE, Z_ZLANG_FIND_7)(p, d, x, __VA_ARGS__)
 #define Z_ZLANG_FIND_7(p, d, q, x, ...) Z_ZLANG_IF(Z_ZLANG_IS_PAREN(x))(Z_ZLANG_FIND_FALSE, Z_ZLANG_IF_INVOKE)(p, d, x)(Z_ZLANG_FIND_TRUE, Z_ZLANG_FIND_8)(p, d, x, __VA_ARGS__)
 #define Z_ZLANG_FIND_8(p, d, q, x, ...) Z_ZLANG_IF(Z_ZLANG_IS_PAREN(x))(Z_ZLANG_FIND_FALSE, Z_ZLANG_IF_INVOKE)(p, d, x)(Z_ZLANG_FIND_TRUE, Z_ZLANG_FIND_9)(p, d, x, __VA_ARGS__)
+#else
+// MSVC workarounds
+#define Z_ZLANG_MSVC_INVOKE_0(m, args) Z_ZLANG_MSVC_INVOKE_X_0(m args)
+#define Z_ZLANG_MSVC_INVOKE_1(m, args) Z_ZLANG_MSVC_INVOKE_X_1(m args)
+#define Z_ZLANG_MSVC_INVOKE_2(m, args) Z_ZLANG_MSVC_INVOKE_X_2(m args)
+#define Z_ZLANG_MSVC_INVOKE_3(m, args) Z_ZLANG_MSVC_INVOKE_X_3(m args)
+#define Z_ZLANG_MSVC_INVOKE_4(m, args) Z_ZLANG_MSVC_INVOKE_X_4(m args)
+#define Z_ZLANG_MSVC_INVOKE_5(m, args) Z_ZLANG_MSVC_INVOKE_X_5(m args)
+#define Z_ZLANG_MSVC_INVOKE_6(m, args) Z_ZLANG_MSVC_INVOKE_X_6(m args)
+#define Z_ZLANG_MSVC_INVOKE_7(m, args) Z_ZLANG_MSVC_INVOKE_X_7(m args)
+#define Z_ZLANG_MSVC_INVOKE_8(m, args) Z_ZLANG_MSVC_INVOKE_X_8(m args)
 
+#define Z_ZLANG_MSVC_INVOKE_X_0(x) x
+#define Z_ZLANG_MSVC_INVOKE_X_1(x) x
+#define Z_ZLANG_MSVC_INVOKE_X_2(x) x
+#define Z_ZLANG_MSVC_INVOKE_X_3(x) x
+#define Z_ZLANG_MSVC_INVOKE_X_4(x) x
+#define Z_ZLANG_MSVC_INVOKE_X_5(x) x
+#define Z_ZLANG_MSVC_INVOKE_X_6(x) x
+#define Z_ZLANG_MSVC_INVOKE_X_7(x) x
+#define Z_ZLANG_MSVC_INVOKE_X_8(x) x
+
+#define Z_ZLANG_FIND(p, d, ...) Z_ZLANG_MSVC_INVOKE_0(Z_ZLANG_FIND_1,(p, d, ~, __VA_ARGS__, (), ()))
+#define Z_ZLANG_FIND_1(p, d, q, x, ...) Z_ZLANG_MSVC_INVOKE_1(Z_ZLANG_IF(Z_ZLANG_IS_PAREN(x))(Z_ZLANG_FIND_FALSE, Z_ZLANG_IF_INVOKE)(p, d, x)(Z_ZLANG_FIND_TRUE, Z_ZLANG_FIND_2), (p, d, x, __VA_ARGS__))
+#define Z_ZLANG_FIND_2(p, d, q, x, ...) Z_ZLANG_MSVC_INVOKE_2(Z_ZLANG_IF(Z_ZLANG_IS_PAREN(x))(Z_ZLANG_FIND_FALSE, Z_ZLANG_IF_INVOKE)(p, d, x)(Z_ZLANG_FIND_TRUE, Z_ZLANG_FIND_3), (p, d, x, __VA_ARGS__))
+#define Z_ZLANG_FIND_3(p, d, q, x, ...) Z_ZLANG_MSVC_INVOKE_3(Z_ZLANG_IF(Z_ZLANG_IS_PAREN(x))(Z_ZLANG_FIND_FALSE, Z_ZLANG_IF_INVOKE)(p, d, x)(Z_ZLANG_FIND_TRUE, Z_ZLANG_FIND_4), (p, d, x, __VA_ARGS__))
+#define Z_ZLANG_FIND_4(p, d, q, x, ...) Z_ZLANG_MSVC_INVOKE_4(Z_ZLANG_IF(Z_ZLANG_IS_PAREN(x))(Z_ZLANG_FIND_FALSE, Z_ZLANG_IF_INVOKE)(p, d, x)(Z_ZLANG_FIND_TRUE, Z_ZLANG_FIND_5), (p, d, x, __VA_ARGS__))
+#define Z_ZLANG_FIND_5(p, d, q, x, ...) Z_ZLANG_MSVC_INVOKE_5(Z_ZLANG_IF(Z_ZLANG_IS_PAREN(x))(Z_ZLANG_FIND_FALSE, Z_ZLANG_IF_INVOKE)(p, d, x)(Z_ZLANG_FIND_TRUE, Z_ZLANG_FIND_6), (p, d, x, __VA_ARGS__))
+#define Z_ZLANG_FIND_6(p, d, q, x, ...) Z_ZLANG_MSVC_INVOKE_6(Z_ZLANG_IF(Z_ZLANG_IS_PAREN(x))(Z_ZLANG_FIND_FALSE, Z_ZLANG_IF_INVOKE)(p, d, x)(Z_ZLANG_FIND_TRUE, Z_ZLANG_FIND_7), (p, d, x, __VA_ARGS__))
+#define Z_ZLANG_FIND_7(p, d, q, x, ...) Z_ZLANG_MSVC_INVOKE_7(Z_ZLANG_IF(Z_ZLANG_IS_PAREN(x))(Z_ZLANG_FIND_FALSE, Z_ZLANG_IF_INVOKE)(p, d, x)(Z_ZLANG_FIND_TRUE, Z_ZLANG_FIND_8), (p, d, x, __VA_ARGS__))
+#define Z_ZLANG_FIND_8(p, d, q, x, ...) Z_ZLANG_MSVC_INVOKE_8(Z_ZLANG_IF(Z_ZLANG_IS_PAREN(x))(Z_ZLANG_FIND_FALSE, Z_ZLANG_IF_INVOKE)(p, d, x)(Z_ZLANG_FIND_TRUE, Z_ZLANG_FIND_9), (p, d, x, __VA_ARGS__))
+#endif
 
 
 
@@ -83,14 +119,14 @@
 #define $ ZLANG
 #endif
 
-// #define ZLANG_NS zlang
-// #define ZLANG_USE (zlang2)
+// #define ZLANG_NS a, b, c, zlang
+// #define ZLANG_USE (a, b, zlang2)
 // #define TEST1(x) x
 // #define ZLANG_zlang_test (TEST1)
 
 // #define TEST2(x) 0
 // #define ZLANG_zlang2_test (TEST2)
-
+ 
 // $(test passed)
 // $(zlang_test passed)
 
