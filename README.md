@@ -6,7 +6,7 @@ A plugin framework for preprocessor DSLs in C/C++.
 Synopsis
 --------
 
-One problem with macros is that they invade the global namespace, and if we are not careful can inadvertently replace an unrelated token. For example, if we were to define a `greet` macro like this:
+One problem with macros is that they invade the global namespace, and if we are not careful, can inadvertently replace an unrelated token. For example, if we were to define a `greet` macro like this:
 
     #define greet(x) Hello x
 
@@ -23,7 +23,7 @@ Perhaps, another developer unaware of our `greet` macro decides to add a `greet`
         ...
     }
 
-And if you aren't using gcc or clang, the developer will most likely be left with confusion why this fails with a compile error. So, in general, we use a convention such that our macro must is written with all caps, like this:
+And if you aren't using gcc or clang, the developer will most likely be left with confusion why this fails with a compile error. So, in general, we use a convention such that our macro must be written with all caps, like this:
 
     #define GREET(x) Hello x
 
