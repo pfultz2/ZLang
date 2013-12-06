@@ -45,7 +45,7 @@
 // to make sure we only call it once
 #define Z_ZLANG_QUALIFY(ns, x) Z_ZLANG_CAT(ZLANG_,  Z_ZLANG_CAT(Z_ZLANG_CAT(ns, _), x))
 
-#define Z_ZLANG_NOT_FOUND(ns, x) Z_ZLANG_CAT(ZLANG_, ns) Z_ZLANG_CAT(ZLANG_$NAMESPACE_, x)
+#define Z_ZLANG_NOT_FOUND(ns, x) Z_ZLANG_CAT(ZLANG_, ns) Z_ZLANG_CAT(ZLANG__NAMESPACE__, x)
 #define Z_ZLANG_TRY_QUALIFY(ns, x) Z_ZLANG_IF(Z_ZLANG_IS_PAREN(Z_ZLANG_CAT(ZLANG_, ns)))(Z_ZLANG_NOT_FOUND, Z_ZLANG_QUALIFY)(ns, x)
 
 
