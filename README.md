@@ -1,7 +1,7 @@
 ZLang
 =====
 
-A plugin framework for preprocessor DSLs in C/C++. 
+A plugin framework for namespace macros in C/C++. 
 
 Synopsis
 --------
